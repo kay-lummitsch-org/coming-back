@@ -1,5 +1,6 @@
 from pathlib import Path
 import json, html, re
+import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).parent
 OUT=ROOT/'public'
@@ -54,3 +55,20 @@ booklet_body='''<main id="main" class="booklet-reading"><a class="back" href="/#
 booklet_dir=OUT/'booklets/the-digital-journeymen'
 booklet_dir.mkdir(parents=True,exist_ok=True)
 (booklet_dir/'index.html').write_text(page('The Digital Journeymen','Damn good digital advice for people who really want to embrace change. Read and download Kay Lummitsch’s original 32-page booklet.',booklet_body))
+
+# Search discovery: regenerate alongside published HTML pages.
+SITE_URL = 'https://kaylummitsch.com'
+SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
+ET.register_namespace('', SITEMAP_NS)
+urlset = ET.Element(f'{{{SITEMAP_NS}}}urlset')
+for published_page in sorted(OUT.rglob('index.html')):
+    # Future noindex pages should not be advertised to search engines.
+    if re.search(r'<meta\b[^>]*\bcontent=[\"\'][^\"\']*\bnoindex\b', published_page.read_text(), re.I):
+        continue
+    relative = published_page.parent.relative_to(OUT).as_posix()
+    route = '/' if relative == '.' else f'/{relative}/'
+    url = ET.SubElement(urlset, f'{{{SITEMAP_NS}}}url')
+    ET.SubElement(url, f'{{{SITEMAP_NS}}}loc').text = SITE_URL + route
+ET.indent(urlset, space='  ')
+ET.ElementTree(urlset).write(OUT/'sitemap.xml', encoding='utf-8', xml_declaration=True)
+(OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n')
