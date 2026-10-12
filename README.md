@@ -1,6 +1,6 @@
 # Coming Back — Kay Lummitsch
 
-Static website for Cloudflare Pages. Five posts/articles with standalone reading pages and an upcoming booklet announcement.
+Static website for Cloudflare Pages. Five posts/articles with standalone reading pages an upcoming booklet announcement, and The Digital Journeymen with a full PDF download.
 
 ## Cloudflare Pages
 
@@ -23,3 +23,7 @@ Edit copy and layout in `build.py`, article texts in `content/source-texts.json`
 - Confirm that the DIN Next licence permits web embedding before uploading the font files to a public repository. The website currently uses a locally installed DIN Next font when available, with system sans-serif fallbacks; it ships no font files.
 - The booklet is upcoming and has no checkout or ordering functionality.
 - Add any required publisher/contact information appropriate for the final site.
+
+## The Digital Journeymen
+
+The published booklet lives at `/booklets/the-digital-journeymen/`. Its 32-page PDF uses the updated cover; interior pages and acknowledgements remain original. Cover and spread previews are derived from that PDF.
