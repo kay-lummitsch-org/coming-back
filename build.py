@@ -7,6 +7,7 @@ OUT=ROOT/'public'
 OUT.mkdir(exist_ok=True)
 texts=json.loads((ROOT/'content/source-texts.json').read_text())
 posts=[
+ ('undercover-kay','Undercover Kay','Article','I love the tears. And the moment a boss realises: I had no idea. What happens next?','undercover-kay.webp','libfile_5e97d541ae508191b0ea993f3dbabecf'),
  ('workarounder','Workarounder','Post','What could we do if we didn’t have to work around our organizations?','workarounder.webp','libfile_3ab6bd800f0c81918737556f2e3fa887'),
  ('the-dunning-kruger-approximation','The Dunning–Kruger Approximation','Article','A little knowledge. A lot of confidence. And some very uncooperative leaves.','dunning-kruger.webp','libfile_0b5997c1e0e08191abfc41d4bd5034fe'),
  ('tuesday-1017','Tuesday, 10:17 AM','Post','Every organization has its aspirations. And then there is Tuesday.','tuesday.webp','libfile_7146b0a842b481918b27074ebaa1a4df'),
