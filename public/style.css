@@ -10,3 +10,8 @@
 @media(max-width:620px){.booklet-reading{padding:30px 6vw 60px}.booklet-hero,.booklet-context{grid-template-columns:1fr;gap:35px;padding:30px 0 55px}.booklet-hero h1{font-size:clamp(36px,9vw,55px)}.booklet-hero .book-image{margin:10px 8px}.booklet-preview{padding:45px 0}.booklet-preview figure{margin:30px 0}.booklet-next{padding:30px 24px}.booklet-next h2{font-size:36px}.classic .book-image{order:-1}}
 
 .contact .contact-channel{font-size:14px;margin:12px 0 0}.contact .button{max-width:100%;white-space:normal}
+
+/* Reach and experience */
+.metrics{padding:0 5vw 90px;margin-top:-25px}.metrics dl{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:40px;margin:0;padding-top:40px;border-top:1px solid #dedede}.metrics dl>div{display:flex;flex-direction:column;gap:12px}.metrics dt{font-size:17px;line-height:1.4;font-weight:700}.metrics dd{order:-1;margin:0;color:var(--orange);font-size:clamp(46px,5.5vw,84px);font-weight:700;line-height:1;letter-spacing:-2px;font-variant-numeric:tabular-nums}
+@media(max-width:900px){.metrics dl{gap:24px}.metrics dd{font-size:clamp(40px,6.5vw,65px);letter-spacing:-1.5px}.metrics dt{font-size:16px}}
+@media(max-width:620px){.metrics{padding:0 6vw 65px;margin-top:0}.metrics dl{grid-template-columns:1fr;gap:35px;padding-top:35px}.metrics dd{font-size:64px}}
