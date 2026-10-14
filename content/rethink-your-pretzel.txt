@@ -1,0 +1,96 @@
+“Son, don’t go into banking. Do something sensible. Become a plumber.”
+
+Imagine Mum saying that.
+
+For decades, the office was where you went for a respectable career. Clean hands. A desk. Perhaps, eventually, people reporting to you.
+
+Now I’m wondering whose chair starts wobbling first.
+
+My bet? Look closely at middle management.
+
+But first, let’s visit Grandma Gretchen.
+
+She’s sitting in her apartment, wrapped in a scarf, wondering why the heating isn’t working.
+
+Across the street, Mr and Mrs Schlabotnik are watching their automated awning extend and retract at two in the morning.
+
+Their smart-home panels glow reassuringly green.
+
+Every system works perfectly on its own. Together, they’re idiots.
+
+Somebody has to turn up. Understand what is happening. Find the faulty sensor, the stuck valve or the conflicting instructions. Get the whole thing working.
+
+Grandma Gretchen needs a warm apartment. The Schlabotniks need some sleep.
+
+That takes more than a dashboard.
+
+The physical world remains stubbornly physical. Even when AI helps diagnose the problem, someone still has to reach the valve.
+
+Meanwhile, back at the office, we have people collecting information, moving it between systems, preparing reports, chasing approvals and asking other people for updates.
+
+Then we have people managing the people doing all that.
+
+That is where I expect the chairs to wobble.
+
+Here is my deliberately steep hypothesis:
+
+In an office built around repetitive administrative work, agents could perform 80% of the standard tasks better and faster.
+
+A hypothesis. Put it to the test. Count the errors, the exceptions, the supervision and the rework.
+
+Give me two people of my choice and eight weeks. Let’s find out how much of that work we can redesign — and how much still needs human judgment.
+
+Because once agents can do the collecting, comparing, routing and reporting, what exactly are we managing?
+
+If your contribution is primarily distributing standard tasks and consolidating the results, you should be asking that question now.
+
+You will have to get involved in solving the actual problem. Understand the work. Make decisions. Take responsibility for outcomes.
+
+And yes, there will be resistance.
+
+There always is when the thing being redesigned is somebody’s position.
+
+I recognise this from the enterprise architecture world. At some point, drawing the architecture has to become responsibility for a product that works.
+
+The same challenge now faces management.
+
+For me, this is product management: understand what people need, shape the solution, build the agents with the team and own whether the result is useful.
+
+Automating a pointless process gives you a faster pointless process.
+
+Someone has to decide what should exist in the first place.
+
+And the Product Manager gets no permanent exemption.
+
+You must plan for the possibility that your own role becomes unnecessary.
+
+If the product only works while you personally coordinate every move, you may have built yourself into the problem.
+
+That applies to me too.
+
+I expect this change to arrive sooner than many organisations are prepared for. Waiting for everyone to feel comfortable is a poor plan.
+
+But treating people as disposable is an equally poor one.
+
+People need a real opportunity to learn, contribute and take on new responsibility. Leadership has to make that possible — and people have to engage with it.
+
+Respect does not require us to preserve every existing role indefinitely.
+
+Your role is not guaranteed. Your dignity is.
+Mine too.
+
+AI has evolved so damn fast that we’d better ask ourselves:
+
+Where do we actually add value?
+
+For the customer. For the people doing the work. For Grandma Gretchen, still waiting for somebody to fix her heating.
+
+I used to say this in the API world.
+
+I’m saying it again.
+
+START TO ADD VALUE!
+
+P.S. This is not an easy one. We all think we’re adding value. Me included.
+
+But we need to rethink our pretzels.
