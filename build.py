@@ -7,6 +7,7 @@ OUT=ROOT/'public'
 OUT.mkdir(exist_ok=True)
 texts=json.loads((ROOT/'content/source-texts.json').read_text())
 posts=[
+ ('rethink-your-pretzel','What Happens If AI Really Kicks In?','Article','Whose Chair Tips Over First?','rethink-your-pretzel.webp','rethink-your-pretzel'),
  ('undercover-kay','Undercover Kay','Article','I love the tears. And the moment a boss realises: I had no idea. What happens next?','undercover-kay.webp','libfile_5e97d541ae508191b0ea993f3dbabecf'),
  ('workarounder','Workarounder','Post','What could we do if we didn’t have to work around our organizations?','workarounder.webp','libfile_3ab6bd800f0c81918737556f2e3fa887'),
  ('the-dunning-kruger-approximation','The Dunning–Kruger Approximation','Article','A little knowledge. A lot of confidence. And some very uncooperative leaves.','dunning-kruger.webp','libfile_0b5997c1e0e08191abfc41d4bd5034fe'),
@@ -47,13 +48,31 @@ for slug,title,kind,desc,img,key in posts:
  if slug=='your-most-wasted-resource-is-human' and lines[0]=='YOUR MOST WASTED RESOURCE IS HUMAN.':lines=lines[1:]
  parts=[]
  for line in lines:
-  if line in headings:
+  if slug=='rethink-your-pretzel' and line in {
+   'Every system works perfectly on its own. Together, they’re idiots.',
+   'In an office built around repetitive administrative work, agents could perform 80% of the standard tasks better and faster.',
+   'You must plan for the possibility that your own role becomes unnecessary.',
+   'Your role is not guaranteed. Your dignity is.',
+   'Mine too.', 'Where do we actually add value?', 'START TO ADD VALUE!'}:
+   parts.append('<p><strong>'+esc(line)+'</strong></p>')
+  elif line in headings:
    if line=='Murphy arranges the site visit':parts.append('<figure><img src="/assets/learning-curve.webp" alt="Illustrative confidence curve: early certainty, discovery of complexity, and gradual understanding. Not the curve measured in the original Dunning–Kruger study." loading="lazy"><figcaption>An illustration of confidence while learning, not a measured research curve.</figcaption></figure>')
    parts.append('<h2>'+esc(line)+'</h2>')
   else:parts.append('<p>'+esc(line)+'</p>')
  source_note='<p class="archive-note">This article preserves the original Comeback text, including the role terminology used at the time.</p>' if slug=='your-most-wasted-resource-is-human' else ''
- main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>/kay</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
- folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);(folder/'index.html').write_text(page(title,desc,main))
+ signature = "/hugs/kay" if slug=="rethink-your-pretzel" else "/kay"
+ main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
+ folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main)
+ if slug=='rethink-your-pretzel':
+  url='https://kaylummitsch.com/writing/rethink-your-pretzel/'
+  image_url='https://kaylummitsch.com/assets/rethink-your-pretzel.webp'
+  metadata=(f'<link rel="canonical" href="{url}"><meta property="og:type" content="article">'
+   f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
+   f'<meta property="og:url" content="{url}"><meta property="og:image" content="{image_url}">'
+   '<meta property="og:image:alt" content="Rethink your pretzel. A bold headline beside a Pretzel Crisps package.">'
+   '<meta name="twitter:card" content="summary_large_image">')
+  rendered=rendered.replace('</head>',metadata+'</head>',1)
+ (folder/'index.html').write_text(rendered)
 print('Generated home and',len(posts),'reading pages.')
 
 booklet_body='''<main id="main" class="booklet-reading"><a class="back" href="/#booklet">← The booklets</a><section class="booklet-hero"><div><p class="eyebrow badge">ALL-TIME CLASSIC / KAY LUMMITSCH</p><h1>THE DIGITAL<br>JOURNEYMEN.</h1><p class="book-sub">DAMN GOOD DIGITAL ADVICE.</p><p class="booklet-intro">For people who really want to embrace change.</p><div class="booklet-actions"><a class="button" href="/assets/the-digital-journeymen.pdf" target="_blank" rel="noopener">Read the booklet ↗</a><a class="text-link" href="/assets/the-digital-journeymen.pdf" download="The-Digital-Journeymen.pdf">Download PDF ↓</a></div><p class="booklet-detail">32 pages · English · Free to read</p></div><div class="book-image"><img src="/assets/tdjm-cover.webp" alt="The Digital Journeymen. Damn Good Digital Advice. Cover by Kay Lummitsch with All-Time Classic sticker." width="1600" height="1128"></div></section>
