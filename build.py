@@ -124,6 +124,9 @@ booklet_dir=OUT/'booklets/the-digital-journeymen'
 booklet_dir.mkdir(parents=True,exist_ok=True)
 (booklet_dir/'index.html').write_text(page('The Digital Journeymen','Damn good digital advice for people who really want to embrace change. Read and download Kay Lummitsch’s original 32-page booklet.',booklet_body,path='/booklets/the-digital-journeymen/',image='tdjm-cover.webp'))
 
+from build_german import build as build_german
+build_german()
+
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
 SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'

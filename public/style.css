@@ -24,4 +24,8 @@
 .contact-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px 16px}.contact .contact-email{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:16px 22px}.contact .contact-email:hover{background:var(--ink);color:white}
 
 /* Publication context */
+.language-switch{display:flex;align-items:center;gap:9px;white-space:nowrap;font-size:14px}.language-switch [aria-current]{font-weight:700;border-bottom:2px solid var(--orange);padding-bottom:3px}.language-switch a:hover{color:var(--orange)}
+@media(max-width:1100px){header{flex-wrap:wrap}header nav{flex:1}.language-switch{margin-left:auto}}
+html[lang="de"] .hero h1{font-size:clamp(65px,7.8vw,125px);letter-spacing:-3px}html[lang="de"] .orange-bang span{font-size:clamp(38px,4.1vw,68px)}
+@media(max-width:620px){header nav{flex:initial}.language-switch{margin-left:0}html[lang="de"] .hero h1{font-size:clamp(48px,13vw,78px);letter-spacing:-2px}html[lang="de"] .orange-bang span{font-size:clamp(36px,10vw,58px)}html[lang="de"] .contact h2{font-size:clamp(35px,10vw,49px)}}
 .published-date{font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 10px}.reading>.published-date{margin:0 0 10px}.reading>.original-date{margin-top:-4px}.story .published-date{font-size:13px;margin:0 0 10px}
