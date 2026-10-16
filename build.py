@@ -6,7 +6,9 @@ ROOT=Path(__file__).parent
 OUT=ROOT/'public'
 OUT.mkdir(exist_ok=True)
 texts=json.loads((ROOT/'content/source-texts.json').read_text())
+texts['on-how-we-see-people']=(ROOT/'content/on-how-we-see-people.txt').read_text()
 posts=[
+ ('on-how-we-see-people','On How We See People','Article','When a Difference Makes the Difference','on-how-we-see-people.webp','on-how-we-see-people'),
  ('rethink-your-pretzel','What Happens If AI Really Kicks In?','Article','Whose Chair Tips Over First?','rethink-your-pretzel.webp','rethink-your-pretzel'),
  ('undercover-kay','Undercover Kay','Article','I love the tears. And the moment a boss realises: I had no idea. What happens next?','undercover-kay.webp','libfile_5e97d541ae508191b0ea993f3dbabecf'),
  ('workarounder','Workarounder','Post','What could we do if we didn’t have to work around our organizations?','workarounder.webp','libfile_3ab6bd800f0c81918737556f2e3fa887'),
@@ -46,6 +48,8 @@ for slug,title,kind,desc,img,key in posts:
  lines=[l.strip() for l in text.splitlines() if l.strip()]
  if lines and lines[0].casefold()==title.casefold():lines=lines[1:]
  if slug=='your-most-wasted-resource-is-human' and lines[0]=='YOUR MOST WASTED RESOURCE IS HUMAN.':lines=lines[1:]
+ if slug=='on-how-we-see-people':
+  lines=[line for line in lines if line not in {desc, '/hugs/kay'}]
  parts=[]
  for line in lines:
   if slug=='rethink-your-pretzel' and line in {
@@ -55,12 +59,12 @@ for slug,title,kind,desc,img,key in posts:
    'Your role is not guaranteed. Your dignity is.',
    'Mine too.', 'Where do we actually add value?', 'START TO ADD VALUE!'}:
    parts.append('<p><strong>'+esc(line)+'</strong></p>')
-  elif line in headings:
+  elif line in headings or (slug=='on-how-we-see-people' and line in {'HOW WE SEE PEOPLE','How this article came about:'}):
    if line=='Murphy arranges the site visit':parts.append('<figure><img src="/assets/learning-curve.webp" alt="Illustrative confidence curve: early certainty, discovery of complexity, and gradual understanding. Not the curve measured in the original Dunning–Kruger study." loading="lazy"><figcaption>An illustration of confidence while learning, not a measured research curve.</figcaption></figure>')
    parts.append('<h2>'+esc(line)+'</h2>')
   else:parts.append('<p>'+esc(line)+'</p>')
  source_note='<p class="archive-note">This article preserves the original Comeback text, including the role terminology used at the time.</p>' if slug=='your-most-wasted-resource-is-human' else ''
- signature = "/hugs/kay" if slug=="rethink-your-pretzel" else "/kay"
+ signature = "/hugs/kay" if slug in {"rethink-your-pretzel","on-how-we-see-people"} else "/kay"
  main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
  folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main)
  if slug=='rethink-your-pretzel':
@@ -72,6 +76,15 @@ for slug,title,kind,desc,img,key in posts:
    '<meta property="og:image:alt" content="Rethink your pretzel. A bold headline beside a Pretzel Crisps package.">'
    '<meta name="twitter:card" content="summary_large_image">')
   rendered=rendered.replace('</head>',metadata+'</head>',1)
+ if slug=='on-how-we-see-people':
+  article_url='https://kaylummitsch.com/writing/on-how-we-see-people/'
+  metadata=(f'<link rel="canonical" href="{article_url}"><meta property="og:type" content="article">'
+   f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
+   f'<meta property="og:url" content="{article_url}"><meta property="og:image" content="https://kaylummitsch.com/assets/on-how-we-see-people.webp">'
+   '<meta property="og:image:alt" content="On How We See People. Antique apothecary drawers with blank labels.">'
+   '<meta name="twitter:card" content="summary_large_image">')
+  rendered=rendered.replace('</head>',metadata+'</head>',1)
+  rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/pulse/how-we-see-people-kay-lummitsch-jqzze/" target="_blank" rel="noopener noreferrer">Read and discuss')
  (folder/'index.html').write_text(rendered)
 print('Generated home and',len(posts),'reading pages.')
 
