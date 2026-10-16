@@ -7,9 +7,11 @@ OUT=ROOT/'public'
 OUT.mkdir(exist_ok=True)
 texts=json.loads((ROOT/'content/source-texts.json').read_text())
 texts['on-how-we-see-people']=(ROOT/'content/on-how-we-see-people.txt').read_text()
+texts['100-percent-kay']=(ROOT/'content/100-percent-kay.txt').read_text()
 posts=[
  ('on-how-we-see-people','On How We See People','Article','When a Difference Makes the Difference','on-how-we-see-people.webp','on-how-we-see-people'),
  ('rethink-your-pretzel','What Happens If AI Really Kicks In?','Article','Whose Chair Tips Over First?','rethink-your-pretzel.webp','rethink-your-pretzel'),
+ ('100-percent-kay','100% Kay','Post','A call from Uli. A little discomfort. And a few words about writing with AI.','kay.webp','100-percent-kay'),
  ('undercover-kay','Undercover Kay','Article','I love the tears. And the moment a boss realises: I had no idea. What happens next?','undercover-kay.webp','libfile_5e97d541ae508191b0ea993f3dbabecf'),
  ('workarounder','Workarounder','Post','What could we do if we didn’t have to work around our organizations?','workarounder.webp','libfile_3ab6bd800f0c81918737556f2e3fa887'),
  ('the-dunning-kruger-approximation','The Dunning–Kruger Approximation','Article','A little knowledge. A lot of confidence. And some very uncooperative leaves.','dunning-kruger.webp','libfile_0b5997c1e0e08191abfc41d4bd5034fe'),
@@ -50,6 +52,8 @@ for slug,title,kind,desc,img,key in posts:
  if slug=='your-most-wasted-resource-is-human' and lines[0]=='YOUR MOST WASTED RESOURCE IS HUMAN.':lines=lines[1:]
  if slug=='on-how-we-see-people':
   lines=[line for line in lines if line not in {desc, '/hugs/kay'}]
+ if slug=='100-percent-kay':
+  lines=[line for line in lines if line != '/thanks/uli/hugs/kay']
  parts=[]
  for line in lines:
   if slug=='rethink-your-pretzel' and line in {
@@ -65,6 +69,7 @@ for slug,title,kind,desc,img,key in posts:
   else:parts.append('<p>'+esc(line)+'</p>')
  source_note='<p class="archive-note">This article preserves the original Comeback text, including the role terminology used at the time.</p>' if slug=='your-most-wasted-resource-is-human' else ''
  signature = "/hugs/kay" if slug in {"rethink-your-pretzel","on-how-we-see-people"} else "/kay"
+ if slug=='100-percent-kay':signature='/thanks/uli/hugs/kay'
  main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
  folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main)
  if slug=='rethink-your-pretzel':
@@ -85,6 +90,8 @@ for slug,title,kind,desc,img,key in posts:
    '<meta name="twitter:card" content="summary_large_image">')
   rendered=rendered.replace('</head>',metadata+'</head>',1)
   rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/pulse/how-we-see-people-kay-lummitsch-jqzze/" target="_blank" rel="noopener noreferrer">Read and discuss')
+ if slug=='100-percent-kay':
+  rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/feed/update/urn:li:activity:7516459664654381056/" target="_blank" rel="noopener noreferrer">Read and discuss')
  (folder/'index.html').write_text(rendered)
 print('Generated home and',len(posts),'reading pages.')
 
