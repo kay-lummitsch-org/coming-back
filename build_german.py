@@ -38,6 +38,20 @@ def german_shell(source, title, desc, en, de):
     source=source.replace('</head>',alternates(en,de)+'</head>',1)
     return source
 
+LANGUAGE_SCRIPT = """(function () {
+  var preference;
+  try { preference = localStorage.getItem('kay-language'); } catch (_) {}
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('.language-switch a[hreflang]');
+    if (link) { try { localStorage.setItem('kay-language', link.hreflang); } catch (_) {} }
+  });
+  // Explicit article and /de/ links keep their language. Only the entry homepage negotiates.
+  if (location.pathname !== '/') return;
+  var language = preference === 'de' || preference === 'en' ? preference :
+    ((navigator.languages && navigator.languages[0]) || navigator.language || 'en');
+  if (/^de(?:-|$)/i.test(language)) location.replace('/de/' + location.search + location.hash);
+})();"""
+
 def build():
     home=(OUT/'index.html').read_text()
     german=german_shell(home,'Menschen & Transformation','Organisationsbarrieren abbauen. Menschen Handlungsspielraum geben. Bessere Arbeit ermöglichen. Kay Lummitsch, Zürich.','/','/de/')
@@ -105,6 +119,10 @@ def build():
         de=PAIRS.get(route,'/de/')
         source=source.replace('</nav></header>','</nav>'+switch(route,de,'en')+'</header>',1)
         if route in PAIRS:source=source.replace('</head>',alternates(route,de)+'</head>',1)
+        file.write_text(source)
+    for file in OUT.rglob('index.html'):
+        source=file.read_text()
+        source=source.replace('</head>','<script>'+LANGUAGE_SCRIPT+'</script></head>',1)
         file.write_text(source)
 
 def german_subscription():
