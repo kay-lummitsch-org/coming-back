@@ -75,7 +75,7 @@ def build():
      'For people who really want to embrace change. A small book from my years in digital transformation. Short chapters. Big questions. Very little patience for protecting the status quo.':'Für Menschen, die Veränderung wirklich wollen. Ein kleines Buch aus meinen Jahren in der digitalen Transformation. Kurze Kapitel. Grosse Fragen. Sehr wenig Geduld für das Bewahren des Status quo.',
      'The technology has moved on. The people questions are still with us.':'Die Technologie hat sich weiterentwickelt. Die Fragen zu uns Menschen sind geblieben.',
      'Rediscover the booklet →':'Das Booklet wiederentdecken · EN →', 'THE MANDATE':'DAS MANDAT',
-     'What is getting<br>in your people’s way?':'Was steht Deinen<br>Leuten im Weg?',
+     'What is getting<br>in your people’s way?':'Was steht Ihren<br>Leuten im Weg?',
      'I’m looking for one company serious about changing that — with a salaried leadership mandate, the authority to act, and the backing to follow through.':'Ich suche ein Unternehmen, das daran ernsthaft etwas ändern will – mit einem angestellten Führungsmandat, dem Handlungsspielraum und der Rückendeckung, Veränderungen auch durchzuziehen.',
      'Something getting in your people’s way? Let’s talk.':'Steht Deinen Leuten etwas im Weg? Lass uns reden.', 'Email Kay ↗':'Kay eine E-Mail schreiben ↗',
      'Connect on LinkedIn or email kay@kaylummitsch.com.':'Auf LinkedIn verbinden oder an kay@kaylummitsch.com schreiben.',
