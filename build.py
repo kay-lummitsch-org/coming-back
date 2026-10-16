@@ -1,5 +1,6 @@
 from pathlib import Path
 import json, html, re
+from datetime import date
 import xml.etree.ElementTree as ET
 
 ROOT=Path(__file__).parent
@@ -19,6 +20,21 @@ posts=[
  ('the-promise','The Promise','Post','What if we gave 10,000 people back just one hour a week?','promise.webp','libfile_c0cfe72db8588191a0d57c42a5ad175c'),
  ('your-most-wasted-resource-is-human','Your Most Wasted Resource Is Human','Article','What I learned when I left the ivory tower and put on work clothes.','human.webp','libfile_7cc035c7c02c81918fd570df24902cf7'),
 ]
+# Dates record first publication on this website, not inferred LinkedIn dates.
+site_dates = {
+ 'on-how-we-see-people':'2026-10-16', '100-percent-kay':'2026-10-16',
+ 'rethink-your-pretzel':'2026-10-14', 'undercover-kay':'2026-10-13',
+ 'workarounder':'2026-10-11', 'the-dunning-kruger-approximation':'2026-10-11',
+ 'tuesday-1017':'2026-10-11', 'the-promise':'2026-10-11',
+ 'your-most-wasted-resource-is-human':'2026-10-11',
+}
+def dated(slug):
+ value=site_dates[slug]
+ label=date.fromisoformat(value).strftime('%d %B %Y').lstrip('0')
+ result=f'<p class="published-date">Published on this site: <time datetime="{value}">{label}</time></p>'
+ if slug=='100-percent-kay':
+  result+='<p class="published-date original-date">Originally posted on LinkedIn: <time datetime="2026-10-15">15 October 2026</time></p>'
+ return result
 def esc(s):return html.escape(s,quote=True)
 def nav():return '''<a class="skip" href="#main">Skip to content</a><header><a class="name" href="/">KAY LUMMITSCH<span>People &amp; Transformation</span></a><nav aria-label="Main navigation"><a href="/#approach">The approach</a><a href="/#writing">Posts &amp; articles</a><a href="/#booklet">Booklets</a><a href="/#contact">Let’s talk ↗</a></nav></header>'''
 def foot():return '''<footer><span>© 2026 Kay Lummitsch</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Find me on LinkedIn ↗</a><span>Made with curiosity. /kay</span></footer>'''
@@ -27,8 +43,29 @@ SENDER_SCRIPT = """<script>
 sender('17c1f235ed7798');
 </script>"""
 def subscription():return '''<section class="subscription" id="subscribe" aria-labelledby="subscribe-heading"><div class="subscription-copy"><p class="eyebrow">STAY CURIOUS</p><h2 id="subscribe-heading">Good questions.<br>Worth keeping.</h2><p>New articles. Fresh questions. A little discomfort.<br>Straight to your inbox.</p></div><div class="subscription-form"><div style="text-align: left" class="sender-form-field" data-sender-form-id="epYyZ1"></div><p class="subscription-note">Sign up for new articles and posts from Kay. Confirm your email to join. Unsubscribe anytime. Your email address is processed by Sender to manage your subscription.</p><a class="subscription-fallback" href="https://stats.sender.net/forms/epYyZ1/view" target="_blank" rel="noopener noreferrer">Form not loading? Open the signup page.</a></div></section>'''
-def page(title,desc,body):return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Kay Lummitsch</title><meta name="description" content="{esc(desc)}"><meta name="theme-color" content="#f45b16"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">{SENDER_SCRIPT if 'data-sender-form-id' in body else ''}</head><body>{nav()}{body}{foot()}</body></html>'''
-cards=''.join(f'''<a class="story" href="/writing/{slug}/"><div class="story-image"><img src="/assets/{img}" alt="{esc(title)}" loading="lazy" width="1200" height="675"></div><div class="story-meta">{kind} <span>↗</span></div><h3>{esc(title)}</h3><p>{esc(desc)}</p><span class="read">Read the {kind.lower()} →</span></a>''' for slug,title,kind,desc,img,_ in posts)
+def share_metadata(title, desc, path, image, article_date=None):
+ url='https://kaylummitsch.com'+path
+ image_url='https://kaylummitsch.com/assets/'+image
+ kind='article' if article_date else 'website'
+ tags=(f'<link rel="canonical" href="{esc(url)}">'
+  f'<meta property="og:type" content="{kind}">'
+  '<meta property="og:site_name" content="Kay Lummitsch">'
+  '<meta property="og:locale" content="en_GB">'
+  f'<meta property="og:title" content="{esc(title)}">'
+  f'<meta property="og:description" content="{esc(desc)}">'
+  f'<meta property="og:url" content="{esc(url)}">'
+  f'<meta property="og:image" content="{esc(image_url)}">'
+  f'<meta property="og:image:alt" content="{esc(title)}">'
+  '<meta name="twitter:card" content="summary_large_image">'
+  f'<meta name="twitter:title" content="{esc(title)}">'
+  f'<meta name="twitter:description" content="{esc(desc)}">'
+  f'<meta name="twitter:image" content="{esc(image_url)}">'
+  f'<meta name="twitter:image:alt" content="{esc(title)}">')
+ if article_date:tags+=f'<meta property="article:published_time" content="{article_date}">'
+ return tags
+
+def page(title,desc,body,path='/',image='kay.webp',article_date=None):return f'''<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{esc(title)} | Kay Lummitsch</title><meta name="description" content="{esc(desc)}"><meta name="theme-color" content="#f45b16"><link rel="icon" href="/assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">{share_metadata(title,desc,path,image,article_date)}{SENDER_SCRIPT if 'data-sender-form-id' in body else ''}</head><body>{nav()}{body}{foot()}</body></html>'''
+cards=''.join(f'''<a class="story" href="/writing/{slug}/"><div class="story-image"><img src="/assets/{img}" alt="{esc(title)}" loading="lazy" width="1200" height="675"></div><div class="story-meta">{kind} <span>↗</span></div><h3>{esc(title)}</h3>{dated(slug)}<p>{esc(desc)}</p><span class="read">Read the {kind.lower()} →</span></a>''' for slug,title,kind,desc,img,_ in posts)
 body=f'''<main id="main"><section class="hero"><div class="hero-copy"><h1>PEOPLE<br>FIRST<span class="orange">.</span><br><span class="hero-question">NOW WHAT?</span></h1><p class="intro">Let’s unlock human potential by removing the organizational barriers we create and keep in place.</p><a class="button" href="#approach">Let’s get into it <span>↓</span></a></div><div class="hero-art"><div class="orange-bang"><span>LESS<br>FRICTION.<br>MORE<br>AGENCY.</span></div><p>Better work.<br>Better results.<br>Better organizations.</p></div></section>
 <section class="tuesday" id="approach"><p class="eyebrow">THE GAP WE NEED TO CLOSE</p><h2>Great aspirations.<br>Then it’s Tuesday,<br><span>10:17 AM.</span></h2><div class="tuesday-copy"><p>People First. Customer First. Empowerment. Trust.</p><p>Someone is waiting for a decision. Someone is chasing information. Someone has found another workaround.</p><p class="strong">What did we put in their way?</p><a class="text-link" href="/writing/tuesday-1017/">Meet Tuesday →</a></div></section>
 <section class="approach"><div><p class="eyebrow">HOW WE RUN THE BUSINESS</p><h2>Build the conditions<br>for a damn<br>good job.</h2></div><div class="approach-list"><article><span>01</span><div><h3>Make good work possible.</h3><p>Find the barriers with the people closest to the work. Change the decisions, structures and habits that keep those barriers in place.</p></div></article><article><span>02</span><div><h3>Give people room to act.</h3><p>Put information, tools and authority where they can make a difference. Let speaking up lead to visible action.</p></div></article><article><span>03</span><div><h3>Keep the promises we sell.</h3><p>Bring customer promises, resources and the reality of delivery together. Then check whether the changes actually help.</p></div></article></div></section>
@@ -70,25 +107,9 @@ for slug,title,kind,desc,img,key in posts:
  source_note='<p class="archive-note">This article preserves the original Comeback text, including the role terminology used at the time.</p>' if slug=='your-most-wasted-resource-is-human' else ''
  signature = "/hugs/kay" if slug in {"rethink-your-pretzel","on-how-we-see-people"} else "/kay"
  if slug=='100-percent-kay':signature='/thanks/uli/hugs/kay'
- main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
- folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main)
- if slug=='rethink-your-pretzel':
-  url='https://kaylummitsch.com/writing/rethink-your-pretzel/'
-  image_url='https://kaylummitsch.com/assets/rethink-your-pretzel.webp'
-  metadata=(f'<link rel="canonical" href="{url}"><meta property="og:type" content="article">'
-   f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
-   f'<meta property="og:url" content="{url}"><meta property="og:image" content="{image_url}">'
-   '<meta property="og:image:alt" content="Rethink your pretzel. A bold headline beside a Pretzel Crisps package.">'
-   '<meta name="twitter:card" content="summary_large_image">')
-  rendered=rendered.replace('</head>',metadata+'</head>',1)
+ main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1>{dated(slug)}<p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
+ folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main,path=f'/writing/{slug}/',image=img,article_date=site_dates[slug])
  if slug=='on-how-we-see-people':
-  article_url='https://kaylummitsch.com/writing/on-how-we-see-people/'
-  metadata=(f'<link rel="canonical" href="{article_url}"><meta property="og:type" content="article">'
-   f'<meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}">'
-   f'<meta property="og:url" content="{article_url}"><meta property="og:image" content="https://kaylummitsch.com/assets/on-how-we-see-people.webp">'
-   '<meta property="og:image:alt" content="On How We See People. Antique apothecary drawers with blank labels.">'
-   '<meta name="twitter:card" content="summary_large_image">')
-  rendered=rendered.replace('</head>',metadata+'</head>',1)
   rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/pulse/how-we-see-people-kay-lummitsch-jqzze/" target="_blank" rel="noopener noreferrer">Read and discuss')
  if slug=='100-percent-kay':
   rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/feed/update/urn:li:activity:7516459664654381056/" target="_blank" rel="noopener noreferrer">Read and discuss')
@@ -101,7 +122,7 @@ booklet_body='''<main id="main" class="booklet-reading"><a class="back" href="/#
 <section class="booklet-next"><p class="eyebrow badge">THE NEXT CHAPTER / UPCOMING</p><h2>PEOPLE FIRST — WTF!</h2><p>Damn good organizational advice. Currently in the making.</p><a class="text-link" href="/#booklet">Meet the new booklet →</a></section></main>'''
 booklet_dir=OUT/'booklets/the-digital-journeymen'
 booklet_dir.mkdir(parents=True,exist_ok=True)
-(booklet_dir/'index.html').write_text(page('The Digital Journeymen','Damn good digital advice for people who really want to embrace change. Read and download Kay Lummitsch’s original 32-page booklet.',booklet_body))
+(booklet_dir/'index.html').write_text(page('The Digital Journeymen','Damn good digital advice for people who really want to embrace change. Read and download Kay Lummitsch’s original 32-page booklet.',booklet_body,path='/booklets/the-digital-journeymen/',image='tdjm-cover.webp'))
 
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
