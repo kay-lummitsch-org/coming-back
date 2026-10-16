@@ -22,3 +22,6 @@
 
 /* Direct contact choices */
 .contact-actions{display:flex;flex-wrap:wrap;align-items:stretch;gap:12px 16px}.contact .contact-email{background:transparent;color:var(--ink);border:2px solid var(--ink);padding:16px 22px}.contact .contact-email:hover{background:var(--ink);color:white}
+
+/* Publication context */
+.published-date{font-size:14px;line-height:1.5;color:var(--muted);margin:0 0 10px}.reading>.published-date{margin:0 0 10px}.reading>.original-date{margin-top:-4px}.story .published-date{font-size:13px;margin:0 0 10px}
