@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import worker from '../worker.mjs';
+const valid={name:'Test visitor',email:'preview-test@example.org',mode:'own',topic:'Test only',region:'',language:'de',consent:true,company:''};
+let writes=0;
+const env={ASSETS:{fetch:()=>new Response('asset')},RIDES_DB:{prepare:()=>({bind:(...values)=>({run:async()=>{writes++;assert.equal(values.length,9);return {success:true}}})})}};
+const req=(data=valid,extra={})=>new Request('https://kaylummitsch.com/api/interview-rides',{method:'POST',headers:{Origin:'https://kaylummitsch.com','Content-Type':'application/json',...extra},body:JSON.stringify(data)});
+assert.equal((await worker.fetch(req(),env)).status,201); assert.equal(writes,1);
+for(const data of [{...valid,consent:false},{...valid,email:'bad'},{...valid,mode:'bad'},{...valid,topic:'x'.repeat(3001)},{...valid,company:'spam'},null]) assert.equal((await worker.fetch(req(data),env)).status,400);
+assert.equal(writes,1);
+assert.equal((await worker.fetch(req(valid,{Origin:'https://evil.example'}),env)).status,403);
+assert.equal((await worker.fetch(req(valid,{'Content-Type':'text/plain'}),env)).status,415);
+assert.equal((await worker.fetch(req({...valid,topic:'x'.repeat(21000)}),env)).status,413);
+assert.equal((await worker.fetch(req(),{...env,RIDES_DB:{prepare:()=>{throw Error('offline')}}})).status,503);
+assert.equal(await (await worker.fetch(new Request('https://kaylummitsch.com/de/'),env)).text(),'asset');
+assert.equal((await worker.fetch(new Request('https://kaylummitsch.com/api/interview-rides'),env)).status,405);
+console.log('Passed: persistence, invalid fields, consent, origin, content type, size, storage failure, asset routing.');
