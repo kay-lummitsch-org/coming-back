@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {notifyEnquiry,retryNotifications} from '../notifications.mjs';
+const enquiry={id:'test',created:'2026-10-18T00:00:00Z',name:'Test',email:'test@example.org',mode:'own',topic:'Test topic',region:''};
+let claimed=true, fail=false, sent=[], updates=[];
+const env={RIDES_EMAIL:{send:async m=>{if(fail)throw Error('provider offline');sent.push(m);}},RIDES_DB:{prepare:sql=>({bind:(...values)=>({first:async()=>claimed?{enquiry_id:'test'}:null,run:async()=>updates.push({sql,values}),all:async()=>({results:[enquiry]})})})}};
+await notifyEnquiry(env,enquiry);
+assert.equal(sent.length,1); assert.equal(sent[0].to,'lummitsch@gmail.com'); assert.equal(sent[0].replyTo,'test@example.org');assert.ok(sent[0].text.includes('Test topic')); assert.ok(updates[0].sql.includes('sent_at'));
+claimed=false; await notifyEnquiry(env,enquiry); assert.equal(sent.length,1);
+claimed=true;fail=true;updates=[]; await notifyEnquiry(env,enquiry);assert.equal(updates[0].values[0],'send_failed');assert.ok(!updates[0].sql.includes('SET sent_at'));
+fail=false; await retryNotifications(env);assert.equal(sent.length,2);
+console.log('Passed: notification content, fixed recipient, Reply-To, duplicate lease, failure tracking, retry.');
