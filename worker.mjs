@@ -3,7 +3,10 @@ const json = (body, status = 200) => Response.json(body, {
 });
 
 export default {
-  async fetch(request, env) {
+  async scheduled(_event, env) {
+    await retryNotifications(env);
+  },
+  async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
     if (url.pathname !== '/api/interview-rides') return json({error: 'Not found'}, 404);
@@ -42,12 +45,16 @@ export default {
           !['pillion', 'own', 'rental'].includes(data.mode) ||
           !['de', 'en'].includes(data.language) || data.consent !== true) return json({error: 'Invalid form'}, 400);
       const id = crypto.randomUUID();
+      const created = new Date().toISOString();
       // Parameters keep visitor content separate from SQL. No public read endpoint.
-      const result = await env.RIDES_DB.prepare(
+      const result = await env.RIDES_DB.batch([env.RIDES_DB.prepare(
         'INSERT INTO enquiries (id, created, name, email, mode, topic, region, language, consent_version) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)'
-      ).bind(id, new Date().toISOString(), clean.name, clean.email, data.mode,
-        clean.topic, clean.region, data.language, '2026-10-18').run();
-      if (!result.success) return json({error: 'Storage unavailable'}, 503);
+      ).bind(id, created, clean.name, clean.email, data.mode,
+        clean.topic, clean.region, data.language, '2026-10-18'),
+        env.RIDES_DB.prepare('INSERT INTO notifications (enquiry_id) VALUES (?)').bind(id)]);
+      if (result.some(r => !r.success)) return json({error: 'Storage unavailable'}, 503);
+      // The durable outbox survives a provider outage; the request stays saved.
+      ctx.waitUntil(notifyEnquiry(env, {...clean, id, created, mode: data.mode}));
       return json({saved: true, id}, 201);
     } catch {
       // Never log personal form contents or report success on a storage failure.
@@ -55,3 +62,5 @@ export default {
     }
   }
 };
+import {notifyEnquiry, retryNotifications} from './notifications.mjs';
+
