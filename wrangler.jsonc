@@ -1,8 +1,12 @@
 {
   "name": "coming-back",
   "compatibility_date": "2026-10-11",
+  "main": "worker.mjs",
   "assets": {
-    "directory": "./public"
+    "directory": "./public",
+    "binding": "ASSETS",
+    "run_worker_first": ["/api/*"]
   },
+  "d1_databases": [{"binding": "RIDES_DB", "database_name": "interview-rides", "database_id": "a155bc82-bbd8-4a37-b80a-069675ea5a2c"}],
   "previews": {}
 }
