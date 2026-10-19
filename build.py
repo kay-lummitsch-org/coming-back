@@ -10,6 +10,7 @@ texts=json.loads((ROOT/'content/source-texts.json').read_text())
 texts['on-how-we-see-people']=(ROOT/'content/on-how-we-see-people.txt').read_text()
 texts['100-percent-kay']=(ROOT/'content/100-percent-kay.txt').read_text()
 posts=[
+ ('until-the-cat-jumps','Your Transformation Works. Until the Cat Jumps.','Article','Motorcycling, yoga, and what survives the return to everyday life.','until-the-cat-jumps.webp','until-the-cat-jumps'),
  ('on-how-we-see-people','On How We See People','Article','When a Difference Makes the Difference','on-how-we-see-people.webp','on-how-we-see-people'),
  ('rethink-your-pretzel','What Happens If AI Really Kicks In?','Article','Whose Chair Tips Over First?','rethink-your-pretzel.webp','rethink-your-pretzel'),
  ('100-percent-kay','100% Kay','Post','A call from Uli. A little discomfort. And a few words about writing with AI.','kay.webp','100-percent-kay'),
@@ -22,6 +23,7 @@ posts=[
 ]
 # Dates record first publication on this website, not inferred LinkedIn dates.
 site_dates = {
+ 'until-the-cat-jumps':'2026-10-19',
  'on-how-we-see-people':'2026-10-16', '100-percent-kay':'2026-10-16',
  'rethink-your-pretzel':'2026-10-14', 'undercover-kay':'2026-10-13',
  'workarounder':'2026-10-11', 'the-dunning-kruger-approximation':'2026-10-11',
@@ -79,7 +81,7 @@ body=f'''<main id="main"><section class="hero"><div class="hero-copy"><h1>PEOPLE
 (OUT/'index.html').write_text(page('People & Transformation','People & Transformation. Less friction. More agency. Better work. Kay Lummitsch brings organizational change and the reality of everyday work together.',body))
 headings={'The leaves disagreed','“Now I’ve got it.”','A little knowledge. A very complete explanation.','Murphy arranges the site visit','The bottle-cleaner trap','How do we practise Humility — and avoid the “I know it all” trap?','LESS FRICTION','PEOPLE EMPOWERMENT & MORE AGENCY','A VOICE THAT COUNTS','POTENTIAL PUT TO WORK','I left the ivory tower.','The people our ease of life rests on.','“Wie geht’s?”','What if we actually meant “People First”?','And now there is AI.','So here is what I know now.','Only call me if you mean it.','And if nobody calls?'}
 for slug,title,kind,desc,img,key in posts:
- text=texts[key].strip()
+ text='' if slug=='until-the-cat-jumps' else texts[key].strip()
  if slug=='the-dunning-kruger-approximation':
   text=text[text.find('THE DUNNING–KRUGER APPROXIMATION\nOh,'):]
  if slug=='your-most-wasted-resource-is-human':
@@ -104,11 +106,16 @@ for slug,title,kind,desc,img,key in posts:
    if line=='Murphy arranges the site visit':parts.append('<figure><img src="/assets/learning-curve.webp" alt="Illustrative confidence curve: early certainty, discovery of complexity, and gradual understanding. Not the curve measured in the original Dunning–Kruger study." loading="lazy"><figcaption>An illustration of confidence while learning, not a measured research curve.</figcaption></figure>')
    parts.append('<h2>'+esc(line)+'</h2>')
   else:parts.append('<p>'+esc(line)+'</p>')
+ if slug=='until-the-cat-jumps':
+  parts=[(ROOT/'content/until-the-cat-jumps.html').read_text()]
  source_note='<p class="archive-note">This article preserves the original Comeback text, including the role terminology used at the time.</p>' if slug=='your-most-wasted-resource-is-human' else ''
  signature = "/hugs/kay" if slug in {"rethink-your-pretzel","on-how-we-see-people"} else "/kay"
  if slug=='100-percent-kay':signature='/thanks/uli/hugs/kay'
+ if slug=='until-the-cat-jumps':signature='/hugs/kay'
  main=f'''<main id="main" class="reading"><a class="back" href="/#writing">← All posts &amp; articles</a><p class="eyebrow">{kind} / KAY LUMMITSCH</p><h1>{esc(title)}</h1>{dated(slug)}<p class="deck">{esc(desc)}</p><img class="reading-cover" src="/assets/{img}" alt="{esc(title)}" width="1200" height="675">{source_note}<div class="article-text">{''.join(parts)}</div><div class="article-end"><span>{signature}</span><a href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Visit my LinkedIn profile ↗</a></div><a class="back" href="/#writing">← Explore more ideas</a>{subscription()}</main>'''
  folder=OUT/'writing'/slug;folder.mkdir(parents=True,exist_ok=True);rendered = page(title,desc,main,path=f'/writing/{slug}/',image=img,article_date=site_dates[slug])
+ if slug=='until-the-cat-jumps':
+  rendered=rendered.replace(f'alt="{esc(title)}" width="1200" height="675"', 'alt="Kay’s black-and-white tomcat walking towards the camera on grey asphalt" width="1732" height="908"')
  if slug=='on-how-we-see-people':
   rendered=rendered.replace('Visit my LinkedIn profile ↗','Read and discuss on LinkedIn ↗').replace('href="https://www.linkedin.com/in/lummitsch/" target="_blank" rel="noopener noreferrer">Read and discuss','href="https://www.linkedin.com/pulse/how-we-see-people-kay-lummitsch-jqzze/" target="_blank" rel="noopener noreferrer">Read and discuss')
  if slug=='100-percent-kay':
