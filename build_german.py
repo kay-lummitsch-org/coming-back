@@ -9,6 +9,7 @@ PAIRS = {
  '/': '/de/',
  '/writing/on-how-we-see-people/': '/de/artikel/menschenbild/',
  '/writing/100-percent-kay/': '/de/artikel/100-prozent-kay/',
+ '/writing/until-the-cat-jumps/': '/de/artikel/bis-die-katze-springt/',
 }
 
 def switch(en, de, language):
@@ -106,10 +107,15 @@ def build():
     german=german.replace('A call from Uli. A little discomfort. And a few words about writing with AI.','Ein Anruf von Uli. Ein bisschen Unbehagen. Und ein paar Worte zum Schreiben mit KI.')
     for target in ['/de/artikel/menschenbild/','/de/artikel/100-prozent-kay/']:
         german=re.sub(r'(<a class="story" href="'+re.escape(target)+r'".*?<span class="read">)Auf Englisch lesen',r'\1Auf Deutsch lesen',german,flags=re.S)
+    german=german.replace('Your Transformation Works. Until the Cat Jumps.', 'Deine Transformation funktioniert. Bis die Katze springt.')
+    german=german.replace('Motorcycling, yoga, and what survives the return to everyday life.', 'Motorradfahren, Yoga und das, was bei der Rückkehr in den Alltag bestehen bleibt.')
+    german=german.replace('href="/writing/until-the-cat-jumps/"', 'href="/de/artikel/bis-die-katze-springt/"')
+    german=re.sub(r'(<a class="story" href="/de/artikel/bis-die-katze-springt/".*?<span class="read">)Auf Englisch lesen', r'\1Auf Deutsch lesen', german, flags=re.S)
     german=re.sub(r'<section class="subscription".*?</section>',german_subscription(),german,flags=re.S)
     write('/de/',german)
     german_article('menschenbild-de.txt','Menschenbild','Wenn Unterschiede Unterschiede machen','/writing/on-how-we-see-people/','/de/artikel/menschenbild/','on-how-we-see-people.webp')
     german_article('100-percent-kay-de.txt','100% Kay','Ein Anruf von Uli. Ein bisschen Unbehagen. Und ein paar Worte zum Schreiben mit KI.','/writing/100-percent-kay/','/de/artikel/100-prozent-kay/','kay.webp')
+    german_cat_article()
     # English pages retain their URLs; paired articles switch to their actual translation.
     for file in OUT.rglob('index.html'):
         if 'de' in file.relative_to(OUT).parts:continue
@@ -130,6 +136,24 @@ def german_subscription():
 
 def write(route,source):
     folder=OUT/route.strip('/');folder.mkdir(parents=True,exist_ok=True);(folder/'index.html').write_text(source)
+
+def german_cat_article():
+    en='/writing/until-the-cat-jumps/'
+    de=PAIRS[en]
+    title='Deine Transformation funktioniert. Bis die Katze springt.'
+    desc='Motorradfahren, Yoga und das, was bei der Rückkehr in den Alltag bestehen bleibt.'
+    source=german_shell((OUT/en.strip('/')/'index.html').read_text(),title,desc,en,de)
+    article=(ROOT/'content/bis-die-katze-springt.html').read_text()
+    source=re.sub(r'(<div class="article-text">).*?(</div><div class="article-end">)', lambda m: m[1]+article+m[2], source, count=1, flags=re.S)
+    source=source.replace('← All posts &amp; articles','← Alle Posts &amp; Artikel').replace('← Explore more ideas','← Weitere Gedanken entdecken')
+    source=source.replace('href="/#writing"','href="/de/#writing"').replace('Article / KAY LUMMITSCH','Artikel / KAY LUMMITSCH')
+    source=source.replace('Published on this site:', 'Auf dieser Website seit:').replace('19 October 2026', '19. Oktober 2026')
+    source=source.replace('<h1>Your Transformation Works. Until the Cat Jumps.</h1>', '<h1>'+html.escape(title)+'</h1>')
+    source=source.replace('<p class="deck">Motorcycling, yoga, and what survives the return to everyday life.</p>', '<p class="deck">'+html.escape(desc)+'</p>')
+    source=source.replace('Kay’s black-and-white tomcat walking towards the camera on grey asphalt', 'Kays schwarz-weisser Kater läuft auf grauem Asphalt auf die Kamera zu')
+    source=source.replace('Visit my LinkedIn profile ↗', 'Mein LinkedIn-Profil besuchen ↗')
+    source=re.sub(r'<section class="subscription".*?</section>',german_subscription(),source,flags=re.S)
+    write(de,source)
 
 def german_article(filename,title,desc,en,de,image):
     source=(OUT/en.strip('/')/'index.html').read_text()
