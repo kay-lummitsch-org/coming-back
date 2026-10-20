@@ -8,7 +8,7 @@ ROOT = Path(__file__).parent
 OUT = ROOT / 'public'
 EN = '/writing/who-needs-a-meeting/'
 DE = '/de/artikel/wer-braucht-ein-meeting/'
-IMAGE = 'sven-whisk.jpeg'
+IMAGE = 'sven-whisk-clean.png'
 
 def build():
     template = (OUT/'writing/until-the-cat-jumps/index.html').read_text()
@@ -44,7 +44,7 @@ def build():
         if language == 'de': subscription = german_subscription()
         main = (f'<main id="main" class="reading"><a class="back" href="{home}#writing">← {back}</a>'
                 f'<p class="eyebrow">POST / KAY LUMMITSCH</p><h1>{esc(title)}</h1><p class="published-date">{date}</p>'
-                f'<img class="reading-cover" src="/assets/{IMAGE}" alt="{esc(alt)}" width="2040" height="1536">'
+                f'<img class="reading-cover" src="/assets/{IMAGE}" alt="{esc(alt)}" width="1445" height="1088">'
                 '<div class="article-text">'+''.join('<p>'+esc(p)+'</p>' for p in paragraphs)+'</div>'
                 '<div class="article-end"><span>/hugs/kay</span></div>'
                 f'<a class="back" href="{home}#writing">← {back}</a>'+subscription+'</main>')
@@ -59,7 +59,7 @@ def build():
         (folder/'index.html').write_text(source)
         homefile = OUT/home.strip('/')/'index.html'
         homepage = homefile.read_text()
-        card = (f'<a class="story" href="{route}"><div class="story-image"><img src="/assets/{IMAGE}" alt="{esc(alt)}" loading="lazy" width="2040" height="1536"></div>'
+        card = (f'<a class="story" href="{route}"><div class="story-image"><img src="/assets/{IMAGE}" alt="{esc(alt)}" loading="lazy" width="1445" height="1088"></div>'
                 f'<div class="story-meta">Post <span>↗</span></div><h3>{esc(title)}</h3><p class="published-date">{date}</p><p>{esc(desc)}</p>'
                 '<span class="read">'+('Auf Deutsch lesen →' if language == 'de' else 'Read the post →')+'</span></a>')
         if f'href="{route}"' not in homepage:
