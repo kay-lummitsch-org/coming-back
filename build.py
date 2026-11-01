@@ -140,6 +140,9 @@ build_interview_rides()
 from build_cb24 import build as build_cb24
 build_cb24()
 
+from build_turning_sixty import build as build_turning_sixty
+build_turning_sixty()
+
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
 SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
