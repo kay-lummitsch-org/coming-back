@@ -7,7 +7,19 @@ export async function notifyEnquiry(env, enquiry) {
   ).bind(Date.now() + 300000, enquiry.id, Date.now()).first();
   if (!claim) return;
   try {
-    await env.RIDES_EMAIL.send({
+    if (enquiry.mode.startsWith('november-')) {
+      const details=JSON.parse(enquiry.region);
+      await env.RIDES_EMAIL.send({from:'kay@kaylummitsch.com',to:'lummitsch@gmail.com',replyTo:enquiry.email,subject:'November-Gespräch – neue vertrauliche Terminanfrage',text:[
+        'VERTRAULICHE TERMINANFRAGE – noch kein bestätigter Termin.', '',
+        `Name: ${enquiry.name}`, `E-Mail: ${enquiry.email}`,
+        `Wunschtermin: ${details.date} / ${details.slot==='arrange'?'Wochenende – nach Absprache':details.slot+' CET'}`,
+        `Format: ${enquiry.mode.slice(9)}`, `Hinweis: ${details.note||'Keine Angabe'}`, '',
+        'Themenstichwort:', enquiry.topic, '',
+        '30 Minuten, kostenlos und unverbindlich. Vertraulich; keine Aufzeichnung oder automatische Transkription.',
+        'Bitte Termin persönlich abstimmen und dann Kalendereinladung / Meet-Link senden.',
+        `Eingang: ${enquiry.created}`, `Referenz: ${enquiry.id}`
+      ].join('\n')});
+    } else await env.RIDES_EMAIL.send({
       from: 'kay@kaylummitsch.com', to: 'lummitsch@gmail.com',
       replyTo: enquiry.email,
       subject: 'Interview Rides – neue Anfrage',

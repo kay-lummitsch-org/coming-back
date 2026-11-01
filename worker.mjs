@@ -1,3 +1,4 @@
+import {handleNovember} from './november.mjs';
 const json = (body, status = 200) => Response.json(body, {
   status, headers: {'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff'}
 });
@@ -9,6 +10,7 @@ export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
+    if (url.pathname === '/api/november') return handleNovember(request, env, ctx);
     if (url.pathname !== '/api/interview-rides') return json({error: 'Not found'}, 404);
     if (request.method !== 'POST') return json({error: 'Method not allowed'}, 405);
     if (request.headers.get('Origin') !== url.origin ||

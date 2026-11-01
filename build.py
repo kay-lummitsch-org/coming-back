@@ -143,6 +143,9 @@ build_cb24()
 from build_turning_sixty import build as build_turning_sixty
 build_turning_sixty()
 
+from build_november import build as build_november
+build_november()
+
 from build_privacy import build as build_privacy
 build_privacy()
 
