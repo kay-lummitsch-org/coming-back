@@ -60,3 +60,14 @@ Static deployment does not run `build.py`; generated files must be committed. Br
 - Sender universal.js is loaded only when the visitor opens the newsletter form. The hosted signup link remains available without JavaScript. No test form submission is needed to verify loading.
 - Footer Privacy / Datenschutz and Privacy & settings / Datenschutz & Einstellungen remain available after either choice. The first-visit notice is non-blocking; settings use an accessible native dialog.
 - Existing request/security logs are separate from optional client analytics. Statistics exclude non-consenting visits and cannot reconstruct previously unrecorded traffic.
+
+
+## November conversations — November 2026
+
+`build_november.py` generates `/november/` and `/de/november/` before the privacy pass and sitemap. `november.js` shows the approved dismissible invitation only on the two homepages, once per browser, after the privacy choice. A small November link remains available. The campaign is active in Europe/Zurich from 1 November through 30 November 2026; both UI and API stop the campaign at 2026-11-30T23:00:00Z.
+
+POST `/api/november` is a meeting request, not a reservation. Weekdays accept 18:00, 18:30 or 19:00 CET starts; weekend dates require `arrange`. Past times and invalid dates are rejected. Google Meet, phone or another platform on request. Free, no obligation, confidential; no recording, transcription, calendar event, guest email or newsletter subscription is created automatically.
+
+The existing Cloudflare database/outbox is reused without migration: November records have `mode=november-meet`, `november-phone` or `november-other` and consent version `november-2026-11-01`. The region field contains structured date/slot/timezone/note JSON. This distinguishes them from Ride records and uses a dedicated email subject/body; the fixed recipient and retry job remain unchanged. No public enquiry read endpoint exists. Kay confirms personally and then creates the invitation/Meet link. Avoid asking for sensitive details; the form requests only a short topic. Existing notification delivery is at least once.
+
+Validation: `node tests/november.mjs`, existing Ride and notification checks; browser-test privacy ordering, dismissal persistence, languages, date/weekend choices and a clearly labelled production test request. Any test record remains explicitly marked TEST and is not a real appointment.
