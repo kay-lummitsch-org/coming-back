@@ -49,3 +49,14 @@ Static deployment does not run `build.py`; generated files must be committed. Br
 - Both live languages reviewed; fictitious form entry persisted in D1.
 - A notification was triggered by a fictitious live enquiry, seen in the Gmail inbox and confirmed received by Kay on 18 October 2026.
 - Live data is not a source-code backup: protect/export it separately through Cloudflare as needed. Git rollback must retain required bindings and schema; a deployment rollback does not undo database changes.
+
+
+## Privacy controls — 1 November 2026
+
+`build_privacy.py`, called centrally by `build.py` after all article generators, creates `/privacy/` and `/de/datenschutz/`, replaces newsletter embeds with click-to-load placeholders, and installs `/privacy.js` and `/privacy.css` on every HTML page. Sitemap generation includes the two privacy pages.
+
+- Cloudflare Web Analytics remains in manual snippet mode. `privacy.js` loads its dashboard-provided beacon only after opt-in; no automatic edge injection should be enabled.
+- `kay-privacy-v1` stores the analytics boolean and selection time in localStorage for 180 days. Missing, malformed or expired choices default to analytics off. Revocation reloads the page; storage events propagate changes to other tabs. `kay-language` is separate.
+- Sender universal.js is loaded only when the visitor opens the newsletter form. The hosted signup link remains available without JavaScript. No test form submission is needed to verify loading.
+- Footer Privacy / Datenschutz and Privacy & settings / Datenschutz & Einstellungen remain available after either choice. The first-visit notice is non-blocking; settings use an accessible native dialog.
+- Existing request/security logs are separate from optional client analytics. Statistics exclude non-consenting visits and cannot reconstruct previously unrecorded traffic.
