@@ -1,0 +1,2 @@
+# Support clients that request the conventional favicon URL.
+/favicon.ico /assets/favicon.svg 301
