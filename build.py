@@ -143,6 +143,16 @@ build_cb24()
 from build_turning_sixty import build as build_turning_sixty
 build_turning_sixty()
 
+# Install the dashboard-provided snippet once on every generated HTML page.
+# Cloudflare Web Analytics is configured for manual installation (all regions).
+ANALYTICS_SNIPPET = '''<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "90724fe691964751a961caa791ce1974"}'></script><!-- End Cloudflare Web Analytics -->'''
+for published_page in OUT.rglob('*.html'):
+    html = published_page.read_text()
+    if 'static.cloudflareinsights.com/beacon.min.js' not in html:
+        if '</body>' not in html:
+            raise ValueError(f'Missing closing body tag: {published_page}')
+        published_page.write_text(html.replace('</body>', ANALYTICS_SNIPPET + '</body>', 1))
+
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
 SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
