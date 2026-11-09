@@ -152,6 +152,9 @@ build_november()
 from build_privacy import build as build_privacy
 build_privacy()
 
+from build_home_update import build as build_home_update
+build_home_update()
+
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
 SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
