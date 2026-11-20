@@ -1,0 +1,26 @@
+POOR MARKWAYNE
+
+On the difficulty of explaining the world of IT.
+
+Last week: Outlook goes down. The FAA stops planes from taking off across the US. Chase and United run into trouble. And on Monday, US Homeland Security Secretary Markwayne Mullin sits on Fox News and is supposed to explain what is actually going on.
+
+His explanation: earlier that day, he had talked to someone who knows a lot about technology. Well, that's reassuring. A whole three hours before the show. And this person told him it might be AI. The new systems are so fast that the old ones can't keep up. WOW!
+
+Systems failing because of too much speed. To us IT folks, that sounds a bit like blaming a traffic jam on cars driving too fast. Or like the lights going out because it was too bright (although that's theoretically possible – building automation is capable of such stunts).
+
+Don't take it too hard, Markwayne.
+
+I don't know what really happened. I wasn't there. But here's my attempt at an explanation: maybe the tech guy said something quite different. Something like: AI is evolving insanely fast – and companies are overwhelmed in their effort to stay state of the art. They rebuild, modernise, connect. Under pressure and at full gallop. And sometimes things go wrong along the way.
+
+Either way, I would look for the overload in the organisations first.
+
+And then maybe what so often happens when we explain our job happened: a game of telephone. From the techie to the minister. From the minister to the TV studio. From the studio to millions of viewers. In the end, AI is running so fast that the servers can't keep up.
+
+Good old Markwayne has no IT background. He doesn't need one. But those of us who do have spent thirty years failing to explain our job in a way that doesn't get lost along the way.
+
+I'm no exception. When I ask the people closest to me what I've actually been doing in IT all these years, and what I keep talking about, I'm amazed every time by how much they know. Well: how little. I talk about it all the time! Apparently, I vastly overestimate my communication skills. What reaches my loved ones is mostly one thing: blah blah.
+
+Maybe that's the real lesson of this week: AI isn't too fast. We're just too bad at explaining.
+
+P.S. Wouldn't it be an idea to bring someone with actual IT expertise into every government? Whatever its colour.
+It's just a thought... After all, it's 2026 – for all of us :)

@@ -1,0 +1,26 @@
+ARMER MARKWAYNE
+
+Über die Schwierigkeit, die Welt der IT zu erklären.
+
+Letzte Woche: Outlook fällt aus. Die FAA lässt in den USA keine Flugzeuge mehr starten. Bei Chase und United hakt es. Und am Montag sitzt der amerikanische Heimatschutzminister Markwayne Mullin bei Fox News und soll erklären, was da eigentlich los ist.
+
+Seine Erklärung: Er habe am selben Tag mit jemandem gesprochen, der sich sehr gut mit Technik auskennt. Da bin ich aber froh. Ganze drei Stunden vor der Sendung. Und der habe ihm gesagt, es könnte an der AI liegen. Die neuen Systeme seien so schnell, dass die alten nicht mehr mitkommen. WOW!
+
+Systeme, die wegen zu viel Geschwindigkeit ausfallen. Für uns IT-Leute klingt das ungefähr so, als läge der Stau daran, dass die Autos zu schnell fahren. Oder als wäre das Licht ausgefallen, weil es zu hell war (Wobei das theoretisch möglich ist. Die Gebäudeautomation hat solche Stunts drauf).
+
+Nimm's nicht so schwer, Markwayne.
+
+Was wirklich vorgefallen ist, weiss ich nicht. Ich war nicht dabei. Aber ich habe einen Erklärungsversuch: Vielleicht hat der Mann mit dem Technikverstand etwas ganz anderes gesagt. Etwa: Die AI entwickelt sich gerade irrsinnig schnell – und die Unternehmen sind überfordert in ihrem Bemühen, state-of-the-art zu bleiben. Sie bauen um, modernisieren, schliessen an. Unter Druck und im Galopp. Und dabei geht eben auch mal was schief.
+
+Ich würde die Überforderung jedenfalls zuerst in den Organisationen suchen.
+
+Und dann passiert vielleicht, was so oft passiert, wenn wir unseren Job erklären: Stille Post. Vom Techniker zum Minister. Vom Minister ins Fernsehstudio. Vom Studio zu Millionen Zuschauern. Am Ende rennt die AI so schnell, dass die Server nicht mehr hinterherkommen.
+
+Der gute Markwayne hat keinen IT-Hintergrund. Muss er auch nicht. Aber wir, die einen haben, haben es in dreissig Jahren nicht geschafft, unseren Job so zu erklären, dass er unterwegs nicht verloren geht.
+
+Ich nehme mich da nicht aus. Wenn ich die Menschen, die mir nahestehen, frage, was ich eigentlich all die Jahre in der IT gemacht habe und worüber ich da ständig rede, staune ich jedes Mal, wie viel sie davon wissen. Also: wie wenig. Ich erzähle doch dauernd davon! Offensichtlich überschätze ich meine Kommunikationsfähigkeit gewaltig. Bei meinen Liebsten kommt vor allem eines an: Blabla.
+
+Vielleicht ist das die eigentliche Lehre aus dieser Woche: Nicht die AI ist zu schnell. Wir sind zu schlecht im Erklären.
+
+P.S. Wäre es nicht mal eine Idee, in jede Regierung jemanden mit IT-Sachverstand aufzunehmen? Egal welcher Farbe.
+Ist ja nur so'n Gedanke... Es ist schliesslich 2026 – für uns alle:)
