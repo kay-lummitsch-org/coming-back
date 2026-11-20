@@ -46,7 +46,7 @@ COPY = {
             '<div class="agents-intro"><p>AI zieht in Organisationen ein. Aber sie kann nur dort handeln, wo die Organisation sie lässt – über APIs.</p>'
             '<p>Schlecht gestaltete, unverwaltete oder längst vergessene Schnittstellen sind dieselbe alte Reibung. Nur steckt sie jetzt im Code.</p></div></div>'
             '<div class="approach-list"><p class="agents-lead strong">APIs – wichtiger denn je.</p>'
-            '<article><span>01</span><div><h3>API-Design.</h3><p>APIs, die Menschen und Agents wirklich verstehen. Jede Ressource, jeder Name, jede Fehlermeldung mit Sorgfalt gestaltet.</p></div></article>'
+            '<article><span>01</span><div><h3>APIs, die sogar Menschen verstehen.</h3><p>Jede Ressource, jeder Name, jede Fehlermeldung mit Sorgfalt gestaltet.</p></div></article>'
             '<article><span>02</span><div><h3>APIs endlich verstehen und einsetzen.</h3><p>Holt das Beste aus Eurem Unternehmen raus.</p></div></article>'
             '<article><span>03</span><div><h3>API-Management war noch nie so wichtig wie heute.</h3><p>Keine Ausreden!</p></div></article>'
             '<p class="agents-close">Im Zeitalter der AI ist das alles kein technisches Detail mehr. Es entscheidet, was Maschinen tun können – und ob Menschen noch verstehen, was passiert.</p>'
