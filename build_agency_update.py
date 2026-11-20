@@ -19,13 +19,13 @@ COPY = {
             '<h2>Your people<br>aren’t the only ones<br>who get stuck.</h2>'
             '<div class="agents-intro"><p>AI is moving into your organization. But it can only act where your organization lets it – through APIs.</p>'
             '<p>Badly designed, unmanaged or long-forgotten interfaces are the same old friction. Only now it’s built into code.</p></div></div>'
-            '<div class="approach-list"><p class="agents-lead">Three disciplines I have loved for a long time decide what your agents can do:</p>'
-            '<article><span>01</span><div><h3>API design.</h3><p>Every resource, every name, every error message deserves care.</p></div></article>'
-            '<article><span>02</span><div><h3>API product design.</h3><p>Who is an API for, what business does it enable, and where does it belong?</p></div></article>'
-            '<article><span>03</span><div><h3>API management.</h3><p>Secure, govern and keep track of what you expose to whom.</p></div></article>'
+            '<div class="approach-list"><p class="agents-lead">This is where I come in. Three disciplines I have loved for a long time – and that decide what your agents can do:</p>'
+            '<article><span>01</span><div><h3>API design.</h3><p>APIs your people and your agents actually understand. Every resource, every name, every error message designed with care.</p></div></article>'
+            '<article><span>02</span><div><h3>Learn how to leverage your APIs.</h3><p>API product design: who your APIs are for, what business they enable, and where they belong in your landscape.</p></div></article>'
+            '<article><span>03</span><div><h3>Rock-solid API management advice.</h3><p>Secure, govern and keep track of what you expose – to whom, where and for how long. Before the bots do it for you.</p></div></article>'
             '<p class="agents-close">In the age of AI, none of this is a technical detail anymore. It decides what your machines can do – and whether your people still understand what’s going on.</p>'
             '<p class="agents-close strong">That’s what AI readiness really means: fewer barriers – for people and for machines.</p>'
-            '<a class="text-link" href="/writing/apis-no-longer-need-to-be-sexy/">APIs no longer need to be sexy. Or do they? →</a></div></section>'
+            '<div class="agents-actions"><a class="button" href="/#contact">Let’s talk APIs <span>→</span></a><a class="text-link" href="/writing/apis-no-longer-need-to-be-sexy/">APIs no longer need to be sexy. Or do they? →</a></div></div></section>'
         ),
         role_old='API program leader.', role_new='Ambassador for API adoption in enterprises.',
         journeyman='Some still know me as the Digital Journeyman. I still am – the roads just got longer.',
@@ -45,13 +45,13 @@ COPY = {
             '<h2>Nicht nur<br>Menschen<br>bleiben hängen.</h2>'
             '<div class="agents-intro"><p>AI zieht in Organisationen ein. Aber sie kann nur dort handeln, wo die Organisation sie lässt – über APIs.</p>'
             '<p>Schlecht gestaltete, unverwaltete oder längst vergessene Schnittstellen sind dieselbe alte Reibung. Nur steckt sie jetzt im Code.</p></div></div>'
-            '<div class="approach-list"><p class="agents-lead">Drei Disziplinen, die ich seit Langem liebe, entscheiden darüber, was Agents tun können:</p>'
-            '<article><span>01</span><div><h3>API-Design.</h3><p>Jede Ressource, jeder Name, jede Fehlermeldung verdient Sorgfalt.</p></div></article>'
-            '<article><span>02</span><div><h3>API-Produktdesign.</h3><p>Für wen ist eine API, welches Geschäft ermöglicht sie, und wo gehört sie hin?</p></div></article>'
-            '<article><span>03</span><div><h3>API-Management.</h3><p>Absichern, steuern und den Überblick behalten, was wir wem exponieren.</p></div></article>'
+            '<div class="approach-list"><p class="agents-lead">Hier komme ich ins Spiel. Mit drei Disziplinen, die ich seit Langem liebe – und die darüber entscheiden, was Agents tun können:</p>'
+            '<article><span>01</span><div><h3>API-Design.</h3><p>APIs, die Menschen und Agents wirklich verstehen. Jede Ressource, jeder Name, jede Fehlermeldung mit Sorgfalt gestaltet.</p></div></article>'
+            '<article><span>02</span><div><h3>Mehr aus deinen APIs machen.</h3><p>API-Produktdesign: für wen deine APIs da sind, welches Geschäft sie ermöglichen und wo sie in deine Landschaft gehören.</p></div></article>'
+            '<article><span>03</span><div><h3>Grundsolide Beratung zum API-Management.</h3><p>Absichern, steuern und den Überblick behalten, was du wem wohin und wie lange exponierst. Bevor die Bots es für dich tun.</p></div></article>'
             '<p class="agents-close">Im Zeitalter der AI ist das alles kein technisches Detail mehr. Es entscheidet, was Maschinen tun können – und ob Menschen noch verstehen, was passiert.</p>'
             '<p class="agents-close strong">Das bedeutet AI-Readiness wirklich: weniger Barrieren – für Menschen und für Maschinen.</p>'
-            '<a class="text-link" href="/de/artikel/apis-muessen-nicht-mehr-sexy-sein/">APIs müssen nicht mehr sexy sein. Oder doch? →</a></div></section>'
+            '<div class="agents-actions"><a class="button" href="/de/#contact">Reden wir über APIs <span>→</span></a><a class="text-link" href="/de/artikel/apis-muessen-nicht-mehr-sexy-sein/">APIs müssen nicht mehr sexy sein. Oder doch? →</a></div></div></section>'
         ),
         role_old='API-Programmleiter.', role_new='Ambassador für API-Adoption in Unternehmen.',
         journeyman='Manche kennen mich noch als Digital Journeyman. Der bin ich geblieben – nur die Wege sind länger geworden.',
