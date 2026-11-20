@@ -27,6 +27,12 @@ COPY = {
             '<p class="agents-close strong">That’s what AI readiness really means: fewer barriers – for people and for machines.</p>'
             '<div class="agents-actions"><a class="button" href="/#contact">Let’s talk APIs <span>→</span></a><a class="text-link" href="/writing/apis-no-longer-need-to-be-sexy/">APIs no longer need to be sexy. Or do they? →</a></div></div></section>'
         ),
+        about=[
+            ('From the boardroom.<br>To the boiler room.<br>And back again.', 'A digital nerd<br>who went out<br>to do “real work”.'),
+            ('I’ve spent years exploring what organizations could become. Then I picked up a grass trimmer and learned how much I still had to learn.',
+             'After more than 20 years in the digital world, I took time out – in the world of “real work”. I picked up a grass trimmer and learned how much I still had to learn.'),
+            ('<p class="strong">I’m bringing those worlds together.</p>', '<p class="strong">Now I’m bringing those worlds together.</p>'),
+        ],
         role_old='API program leader.', role_new='Ambassador for API adoption in enterprises.',
         journeyman='Some still know me as the Digital Journeyman. I still am – the roads just got longer.',
         contact=(
@@ -53,6 +59,12 @@ COPY = {
             '<p class="agents-close strong">Das bedeutet AI-Readiness wirklich: weniger Barrieren – für Menschen und für Maschinen.</p>'
             '<div class="agents-actions"><a class="button" href="/de/#contact">Reden wir über APIs <span>→</span></a><a class="text-link" href="/de/artikel/apis-muessen-nicht-mehr-sexy-sein/">APIs müssen nicht mehr sexy sein. Oder doch? →</a></div></div></section>'
         ),
+        about=[
+            ('Aus der Chefetage.<br>In den Technikraum.<br>Und wieder zurück.', 'Ein digitaler Nerd,<br>der auszog, um<br>«richtig» zu arbeiten.'),
+            ('Jahrelang habe ich daran gearbeitet, was aus Organisationen werden könnte. Dann nahm ich einen Freischneider in die Hand und merkte, wie viel ich noch zu lernen hatte.',
+             'Nach über 20 Jahren in der digitalen Welt habe ich mir eine Auszeit genommen – in der Welt der «richtigen Arbeit». Ich nahm einen Freischneider in die Hand und merkte, wie viel ich noch zu lernen hatte.'),
+            ('<p class="strong">Ich bringe diese Welten zusammen.</p>', '<p class="strong">Jetzt bringe ich diese Welten zusammen.</p>'),
+        ],
         role_old='API-Programmleiter.', role_new='Ambassador für API-Adoption in Unternehmen.',
         journeyman='Manche kennen mich noch als Digital Journeyman. Der bin ich geblieben – nur die Wege sind länger geworden.',
         contact=(
@@ -83,6 +95,8 @@ def update(c):
 
     # 4. Context: the Digital Journeyman is back.
     source = source.replace(c['role_old'], c['role_new'])
+    for old, new in c['about']:
+        source = source.replace(old, new)
     source = re.sub(r'<p class="journeyman-note">.*?</p>', '', source, flags=re.S)
     source = re.sub(r'(<div class="about-copy">.*?</h2>)', lambda m: m[1] + f'<p class="journeyman-note">{c["journeyman"]}</p>', source, count=1, flags=re.S)
 
