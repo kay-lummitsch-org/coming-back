@@ -1,0 +1,29 @@
+ACHTUNG :: APIs MÜSSEN NICHT MEHR SEXY SEIN.
+
+Früher habe ich leidenschaftlich über die Schönheit von APIs gesprochen. Wirklich leidenschaftlich. Wundervolle APIs und bezaubernde API-Produkte zu entwerfen war für mich eine Kunst.
+
+Für ein Buchungsmanagement-System habe ich eine API gebaut und unglaublich viel Wert auf Sexiness gelegt. Das hat Spass gemacht. Und entsprechend lange gedauert.
+
+Dann die Fonts-API für Monotype. Eine Firma, die sich mit Schrift als Kunstform beschäftigt – da hatte für mich auch die API Anspruch darauf, kunstvoll entworfen zu sein. Alles andere wäre mir unanständig vorgekommen.
+
+Und jetzt? AI erschliesst und übersetzt auch sperrige Webservices, RPCs und historisch gewachsene Formate. Kurzum: jede Scheusslichkeit, die wir in oder an unseren internen Systemen finden. Selbst die Systeme, die nur noch von älteren Herrschaften in kurzärmligen Nylonhemden, deren Gürtel merklich zu hoch sitzt, angesprochen werden können (ihr wisst, ich bin sechzig und somit näher dran, als mir lieb ist).
+
+Endlich ist das Rumgefummel vorbei. Was haben wir uns da immer und immer wieder die Finger abgebrochen! Und nun müssen wir uns auch nicht mehr mit dem Abkürzungswahn zwischen 1970 und 2010 herumschlagen.
+
+Also ist es egal, wie eine API aussieht? Die Antwort ist leicht: JA UND NEIN!
+
+JA, weil die AI alles in den Eingeweiden unserer Organisationen findet und sogar damit sprechen kann.
+
+NEIN. Weil es uns auch heute nicht egal sein darf, wie eine API aussieht, die wir exposen – sowohl nach innen als auch nach aussen.
+
+«Das ist egal, das ist nur für intern» darf nicht gelten – und hätte es auch nie dürfen.
+
+Denn beim API-Design versteht man den Business Case ganz tief – und gestaltet ihn dabei mit. Es geht um das Produkt, um zukünftige Erweiterbarkeit und um seinen Platz in der «North Bound Landscape» des Unternehmens. Die Schönheit war nie bloss Lack. Sie war ein Nebenprodukt vom Nachdenken. Und es spricht auch überhaupt nichts dagegen, wenn die AI dabei hilft.
+
+Dazu kommt das scheinbar Unspektakuläre: Eine grundsolide API-Management-Plattform bleibt wichtig – ist, angesichts der cleveren Bots, die versuchen, in unsere Systeme einzudringen, mehr denn je überlebenswichtig. Services absichern. Zugriffe nachvollziehen. Kontrollieren, was wir wem wohin und wie lange exponieren.
+
+Und als API-Exposure-Team müssen wir weiterhin gemeinsame Designstandards einhalten. Sonst verlieren wir Menschen den Überblick über unsere Produkte und Schnittstellen.
+
+Dann weiss wirklich nur noch die AI, was bei uns eigentlich los ist.
+
+Und das wäre doch schade.
