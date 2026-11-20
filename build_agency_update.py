@@ -27,7 +27,7 @@ COPY = {
             '<p class="agents-close strong">That’s what AI readiness really means: fewer barriers – for people and for machines.</p>'
             '<a class="text-link" href="/writing/apis-no-longer-need-to-be-sexy/">APIs no longer need to be sexy. Or do they? →</a></div></section>'
         ),
-        role_old='API program leader.', role_new='API designer &amp; program leader.',
+        role_old='API program leader.', role_new='Ambassador for API adoption in enterprises.',
         journeyman='Some still know me as the Digital Journeyman. I still am – the roads just got longer.',
         contact=(
             '<p class="eyebrow">TWO QUESTIONS</p><h2>What is getting<br>in your people’s way?</h2>'
@@ -53,7 +53,7 @@ COPY = {
             '<p class="agents-close strong">Das bedeutet AI-Readiness wirklich: weniger Barrieren – für Menschen und für Maschinen.</p>'
             '<a class="text-link" href="/de/artikel/apis-muessen-nicht-mehr-sexy-sein/">APIs müssen nicht mehr sexy sein. Oder doch? →</a></div></section>'
         ),
-        role_old='API-Programmleiter.', role_new='API-Designer &amp; Programmleiter.',
+        role_old='API-Programmleiter.', role_new='Ambassador für API-Adoption in Unternehmen.',
         journeyman='Manche kennen mich noch als Digital Journeyman. Der bin ich geblieben – nur die Wege sind länger geworden.',
         contact=(
             '<p class="eyebrow">ZWEI FRAGEN</p><h2>Was steht den Menschen<br>in deiner Organisation<br>im Weg?</h2>'
