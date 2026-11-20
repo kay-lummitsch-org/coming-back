@@ -1,0 +1,29 @@
+ATTENTION :: APIs NO LONGER NEED TO BE SEXY.
+
+I used to talk passionately about the beauty of APIs. Truly passionately. Designing wonderful APIs and enchanting API products was an art form to me.
+
+For a booking management system, I built an API and put an incredible amount of effort into making it sexy. It was fun. And it took just as long as you'd expect.
+
+Then the Fonts API for Monotype. A company that treats type as an art form – so for me, the API, too, deserved to be designed with artistry. Anything less would have felt indecent.
+
+And now? AI unlocks and translates even clunky web services, RPCs, and formats that have grown over decades. In short: every monstrosity we find in or around our internal systems. Even the systems that can only be addressed by elderly gentlemen in short-sleeved nylon shirts whose belts sit noticeably too high (you know I'm sixty, so I'm closer to that than I'd like).
+
+Finally, the fiddling is over. How often did we break our fingers on that stuff, again and again? And now we no longer have to wrestle with the acronym madness of 1970 to 2010 either.
+
+So does it matter what an API looks like? The answer is easy: YES AND NO!
+
+YES, because AI finds everything in the bowels of our organisations and can even talk to it.
+
+NO. Because it still has to matter to us how the APIs we expose look – internally as well as externally.
+
+“Doesn't matter, it's only internal” must not count – and never should have.
+
+Because in API design, you understand the business case deeply – and shape it along the way. It's about the product, future extensibility and its place in the company's “North Bound Landscape”. The beauty was never just varnish. It was a by-product of thinking. And there's absolutely nothing wrong with AI helping out.
+
+Then there's the seemingly unspectacular part: a rock-solid API management platform remains important – in fact, given the clever bots trying to break into our systems, it is more vital than ever. Securing services. Tracing access. Controlling what we expose to whom, where, and for how long.
+
+And as an API exposure team, we still need to stick to shared design standards. Otherwise, we humans lose track of our products and interfaces.
+
+Then only the AI will really know what's actually going on around here.
+
+And that would be a shame.

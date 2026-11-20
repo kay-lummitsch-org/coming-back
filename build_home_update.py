@@ -50,10 +50,8 @@ def update_home(lang, c):
     path = OUT / c['home'].strip('/') / 'index.html' if c['home'] != '/' else OUT / 'index.html'
     source = path.read_text()
 
-    # 1. Mandate as an invitation, directly under the hero line.
+    # 1. No active mandate search in the hero any more (see build_agency_update.py).
     source = re.sub(r'<p class="mandate-invite">.*?</p>', '', source, flags=re.S)
-    invite = f'<p class="mandate-invite">{c["invite"]} <a href="{c["home"]}#contact">{c["invite_link"]}</a></p>'
-    source = re.sub(r'(<p class="intro">.*?</p>)', lambda m: m[1] + invite, source, count=1, flags=re.S)
     source = source.replace(c['mandate_old'], c['mandate_new'])
 
     # 2. Interview Rides leave the homepage; the subpage stays, linked in the footer.
