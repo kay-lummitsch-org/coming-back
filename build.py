@@ -180,3 +180,6 @@ for published_page in sorted(OUT.rglob('index.html')):
 ET.indent(urlset, space='  ')
 ET.ElementTree(urlset).write(OUT/'sitemap.xml', encoding='utf-8', xml_declaration=True)
 (OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n')
+
+from build_books_update import build as build_books_update
+build_books_update()
