@@ -13,16 +13,24 @@ HOME = {
         alt_old='alt="People First — WTF! Booklet cover"',
         alt_new='alt="People First — WTF! cover: five workers carrying an orange pyramid with a relaxed boss on top"',
         anchor='<p>The technology has moved on. The people questions are still with us.</p>',
-        next=('<p class="coming-next"><span class="badge">COMING NEXT:</span> THE DIGITAL JOURNEYMEN – The Agents Edition. '
-              'APIs in the age of AI. Same walls. New colleagues.</p>'),
+        section=('<section class="booklet agents-edition" id="agents-edition"><div><p class="eyebrow badge">COMING NEXT</p>'
+                 '<h2>THE DIGITAL<br>JOURNEYMEN –<br>THE AGENTS EDITION.</h2><p class="book-sub">DAMN GOOD DIGITAL ADVICE FOR APIS IN THE AGE OF AI.</p>'
+                 '<p>AI can only act where your organization lets it – through APIs. And anyone who has lived through an API program knows: technology was rarely the problem.</p>'
+                 '<p>The agents will run into exactly the same walls.</p><p>Currently in the making.</p>'
+                 '<a class="text-link" href="/#agents">APIs in the age of AI →</a></div>'
+                 '<div class="book-image"><img src="/assets/agents-edition-landscape.webp" alt="THE DIGITAL JOURNEYMEN – The Agents Edition cover: a human hand passing a yellow baton to a wireframe robot hand" loading="lazy" width="1536" height="1024"></div></section>'),
     ),
     'de': dict(
         file=OUT / 'de' / 'index.html',
         alt_old='alt="People First — WTF! Booklet cover"',
         alt_new='alt="People First — WTF! Cover: fünf Arbeitende tragen eine orange Pyramide, oben sitzt entspannt der Chef"',
         anchor='<p>Die Technologie hat sich weiterentwickelt. Die Fragen zu uns Menschen sind geblieben.</p>',
-        next=('<p class="coming-next"><span class="badge">ALS NÄCHSTES:</span> THE DIGITAL JOURNEYMEN – The Agents Edition. '
-              'APIs im Zeitalter der AI. Dieselben Wände. Neue Kollegen.</p>'),
+        section=('<section class="booklet agents-edition" id="agents-edition"><div><p class="eyebrow badge">ALS NÄCHSTES</p>'
+                 '<h2>THE DIGITAL<br>JOURNEYMEN –<br>THE AGENTS EDITION.</h2><p class="book-sub">VERDAMMT GUTE DIGITALE GEDANKEN FÜR APIS IM ZEITALTER DER AI.</p>'
+                 '<p>AI kann nur dort handeln, wo die Organisation sie lässt – über APIs. Und wer schon einmal ein API-Programm erlebt hat, weiss: Die Technik war selten das Problem.</p>'
+                 '<p>Die Agents werden an genau denselben Wänden stehen.</p><p>Entsteht gerade.</p>'
+                 '<a class="text-link" href="/de/#agents">APIs im Zeitalter der AI →</a></div>'
+                 '<div class="book-image"><img src="/assets/agents-edition-landscape.webp" alt="THE DIGITAL JOURNEYMEN – The Agents Edition Cover: eine Menschenhand übergibt einer Drahtgitter-Roboterhand einen gelben Staffelstab" loading="lazy" width="1536" height="1024"></div></section>'),
     ),
 }
 
@@ -40,7 +48,7 @@ NEXT_NEW = (
     '</div></section>'
 )
 
-CSS = ('\n/* books-update */.coming-next{font-weight:700}.coming-next .badge{letter-spacing:1px}'
+CSS = ('\n/* books-update */.agents-edition .book-image{transform:rotate(2deg)}@media(max-width:620px){.agents-edition .book-image{order:-1}}'
        '.next-books{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:20px}'
        '.next-books article{display:grid;grid-template-columns:160px 1fr;gap:28px;align-items:start}'
        '.next-books img{border:1px solid #ddd;box-shadow:8px 10px 0 #e6e2da}'
@@ -55,9 +63,9 @@ def build():
         s = f.read_text()
         s = s.replace('src="/assets/booklet.webp"', 'src="/assets/people-first-cover.webp"')
         s = s.replace(c['alt_old'], c['alt_new'])
-        if 'class="coming-next"' not in s:
-            assert c['anchor'] in s, f'anchor missing in {f}'
-            s = s.replace(c['anchor'], c['anchor'] + c['next'], 1)
+        if 'id="agents-edition"' not in s:
+            assert '<section class="booklet classic" id="tdjm">' in s, f'classic section missing in {f}'
+            s = s.replace('<section class="booklet classic" id="tdjm">', c['section'] + '<section class="booklet classic" id="tdjm">', 1)
         f.write_text(s)
 
     bf = OUT / 'booklets' / 'the-digital-journeymen' / 'index.html'
