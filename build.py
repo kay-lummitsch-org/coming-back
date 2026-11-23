@@ -155,6 +155,9 @@ build_apis_sexy()
 from build_markwayne import build as build_markwayne
 build_markwayne()
 
+from build_coming_next import build_posts as build_coming_next_posts
+build_coming_next_posts()
+
 from build_privacy import build as build_privacy
 build_privacy()
 
