@@ -72,7 +72,9 @@ CSS = ('\n/* coming-next */.home-next{margin:0 auto;max-width:1200px;padding:70p
 SIGN = '<div class="article-end"><span>/hugs/kay</span></div>'
 
 
-def build():
+def build_posts():
+    """Post pages and homepage card. Runs with the other posts, before build_home_update,
+    so the card lands in the overview and the homepage keeps its six newest posts."""
     build_post(EN, DE, IMAGE, 'coming-next', COPY, width=1600, height=1200)
     for lang, route in [('en', EN), ('de', DE)]:
         page = OUT / route.strip('/') / 'index.html'
@@ -85,6 +87,8 @@ def build():
             s = re.sub(r'(<div class="article-text">.*?</div>)', lambda m: m.group(1) + SIGN, s, count=1, flags=re.S)
         page.write_text(s)
 
+
+def build():
     for lang, c in BLOCK.items():
         f = c['file']
         s = f.read_text()
