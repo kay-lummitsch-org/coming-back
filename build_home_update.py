@@ -8,6 +8,9 @@ import re
 ROOT = Path(__file__).parent
 OUT = ROOT / 'public'
 HOME_POSTS = 6
+# Posts that stay in the overview but not on the homepage (Kay, 23.11.2026).
+HOME_HIDDEN = ('poor-markwayne', 'armer-markwayne', 'congratulations-its-your-fault', 'herzlichen-glueckwunsch-deine-schuld',
+               'who-needs-a-meeting', 'wer-braucht-ein-meeting')
 
 COPY = {
     'en': dict(
@@ -60,7 +63,8 @@ def update_home(lang, c):
     # 3. Only the newest posts on the homepage, plus a link to the overview.
     match, cards = stories_block(source)
     all_cards = ''.join(cards)
-    source = source[:match.start(1)] + ''.join(cards[:HOME_POSTS]) + source[match.end(1):]
+    shown = [card for card in cards if not any(f'/{slug}/"' in card[:120] for slug in HOME_HIDDEN)]
+    source = source[:match.start(1)] + ''.join(shown[:HOME_POSTS]) + source[match.end(1):]
     source = re.sub(r'<p class="all-posts">.*?</p>', '', source, flags=re.S)
     more = f'<p class="all-posts"><a class="text-link" href="{c["overview"]}">{c["all_posts"]}</a></p>'
     source = re.sub(r'(<div class="stories">.*?</div>)(</section>)', lambda m: m[1] + more + m[2], source, count=1, flags=re.S)
