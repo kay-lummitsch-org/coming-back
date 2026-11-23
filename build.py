@@ -164,6 +164,12 @@ build_home_update()
 from build_agency_update import build as build_agency_update
 build_agency_update()
 
+from build_books_update import build as build_books_update
+build_books_update()
+
+from build_coming_next import build as build_coming_next
+build_coming_next()
+
 # Search discovery: regenerate alongside published HTML pages.
 SITE_URL = 'https://kaylummitsch.com'
 SITEMAP_NS = 'http://www.sitemaps.org/schemas/sitemap/0.9'
@@ -180,6 +186,3 @@ for published_page in sorted(OUT.rglob('index.html')):
 ET.indent(urlset, space='  ')
 ET.ElementTree(urlset).write(OUT/'sitemap.xml', encoding='utf-8', xml_declaration=True)
 (OUT/'robots.txt').write_text(f'User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n')
-
-from build_books_update import build as build_books_update
-build_books_update()

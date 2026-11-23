@@ -36,3 +36,5 @@ html[lang="de"] .hero h1{font-size:clamp(65px,7.8vw,125px);letter-spacing:-3px}h
 .agents-actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px 32px;margin-top:22px}.agents-actions .button{margin-top:0}
 
 /* books-update */.agents-edition .book-image{transform:rotate(2deg)}@media(max-width:620px){.agents-edition .book-image{order:-1}}.next-books{display:grid;grid-template-columns:1fr 1fr;gap:50px;margin-top:20px}.next-books article{display:grid;grid-template-columns:160px 1fr;gap:28px;align-items:start}.next-books img{border:1px solid #ddd;box-shadow:8px 10px 0 #e6e2da}.next-books h2{font-size:clamp(26px,2.4vw,36px);margin-bottom:14px}.next-books .eyebrow{margin-bottom:12px}@media(max-width:900px){.next-books{grid-template-columns:1fr}}@media(max-width:620px){.next-books article{grid-template-columns:110px 1fr;gap:20px}}
+
+/* coming-next */.home-next{margin:0 auto;max-width:1200px;padding:70px 50px}.home-next>.eyebrow{margin-bottom:10px}.home-next .next-more{margin-top:36px}@media(max-width:620px){.home-next{padding:44px 24px}}
